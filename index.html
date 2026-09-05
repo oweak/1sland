@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="1sland — projects, systems and things I build." />
+  <title>1sland</title>
+  <style>
+    :root{
+      --bg:#0b0d10;
+      --panel:#11151a;
+      --panel2:#161b22;
+      --text:#f3f5f7;
+      --muted:#9aa4b2;
+      --line:#242b35;
+      --accent:#7dd3fc;
+      --accent2:#a7f3d0;
+      --max:1100px;
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      line-height:1.65;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,
+      "Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%,rgba(125,211,252,.08),transparent 34%),
+        radial-gradient(circle at 85% 15%,rgba(167,243,208,.06),transparent 28%),
+        var(--bg);
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(calc(100% - 32px),var(--max));margin:0 auto}
+    header{
+      position:sticky;top:0;z-index:10;backdrop-filter:blur(18px);
+      background:rgba(11,13,16,.78);border-bottom:1px solid rgba(255,255,255,.05);
+    }
+    .nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{font-weight:800;letter-spacing:-.03em;font-size:1.25rem}
+    .brand span{color:var(--accent)}
+    nav{display:flex;flex-wrap:wrap;gap:18px;color:var(--muted);font-size:.95rem}
+    nav a:hover{color:var(--text)}
+    .hero{padding:112px 0 92px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:.88rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 18px rgba(167,243,208,.55)}
+    h1{margin:0;max-width:920px;font-size:clamp(3.3rem,8.5vw,7.4rem);line-height:.96;letter-spacing:-.07em}
+    .hero p{max-width:720px;margin:28px 0 0;color:var(--muted);font-size:clamp(1.05rem,2vw,1.28rem)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:var(--panel);transition:.15s ease}
+    .btn:hover{transform:translateY(-2px);border-color:#394553;background:var(--panel2)}
+    .btn.primary{color:#061016;background:var(--accent);border-color:var(--accent);font-weight:700}
+    section{padding:28px 0 78px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}
+    .section-head h2{margin:0;font-size:clamp(1.8rem,4vw,2.5rem);letter-spacing:-.04em}
+    .section-head p{margin:0;color:var(--muted);max-width:560px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{grid-column:span 6;padding:26px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.01));min-height:230px}
+    .card.wide{grid-column:span 8}.card.small{grid-column:span 4}
+    .tag{display:inline-block;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.78rem;margin-bottom:16px}
+    .card h3{margin:0 0 10px;font-size:1.38rem;letter-spacing:-.03em}
+    .card p{margin:0;color:var(--muted)}
+    .card footer{margin-top:24px;color:var(--accent);font-size:.92rem}
+    .focus-card{grid-column:span 4;min-height:205px}
+    .focus-card strong{display:block;margin-bottom:8px;font-size:1.15rem}
+    .about{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+    .box{padding:27px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.015)}
+    .box p{color:var(--muted);margin-top:0}.box p:last-child{margin-bottom:0}
+    .stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .stack span{padding:7px 10px;border-radius:10px;background:var(--panel);border:1px solid var(--line);color:#c9d1d9;font-size:.86rem}
+    .status{margin-top:18px;display:flex;align-items:center;gap:9px;color:var(--muted);font-size:.9rem}
+    .status .dot{width:7px;height:7px;box-shadow:none}
+    footer.site-footer{border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;padding:24px 0 34px}
+    @media(max-width:800px){
+      .nav{align-items:flex-start;flex-direction:column;padding:16px 0}
+      .hero{padding-top:76px}
+      .card,.card.wide,.card.small,.focus-card{grid-column:span 12}
+      .about{grid-template-columns:1fr}
+      .section-head{align-items:flex-start;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#top">1<span>sland</span></a>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#focus">Focus</a>
+      <a href="#about">About</a>
+      <a href="https://github.com/oweak" target="_blank" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow"><span class="dot"></span> 1sland.me</div>
+      <h1>Build systems. Learn by doing.</h1>
+      <p>Projects, experiments, and whatever survives long enough to stay here.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#projects">查看项目</a>
+        <a class="btn" href="#about">关于 1sland</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>目前真正持续维护和使用的项目。</p>
+      </div>
+      <div class="grid">
+        <article class="card wide">
+          <span class="tag">Distributed Systems · Industrial Simulation</span>
+          <h3>mini-OGAS</h3>
+          <p>一个面向工业管理场景的分布式系统项目。核心方向包括节点通信、运行状态采集、生产仿真、权限与告警、AI / 管理员决策分流，以及围绕 PostgreSQL、Redis、NATS、Docker 等组件构建的数据与服务链路。</p>
+          <footer>Python · SimPy · Redis · PostgreSQL · NATS · Docker</footer>
+        </article>
+        <article class="card small">
+          <span class="tag">Personal Infrastructure</span>
+          <h3>1sland</h3>
+          <p>当前这个站点本身也是一个完整的小型工程实践：域名、DNS、Azure VM、Ubuntu、SSH、Nginx、HTTPS 与证书自动续期。</p>
+          <footer>Azure · Ubuntu · Nginx · Let's Encrypt</footer>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="focus">
+    <div class="container">
+      <div class="section-head">
+        <h2>Current Focus</h2>
+        <p>当前更关注把已有项目做得稳定、清晰、可维护。</p>
+      </div>
+      <div class="grid">
+        <article class="card focus-card">
+          <span class="tag">Projects</span>
+          <strong>项目迭代</strong>
+          <p>持续完善已有项目的架构、部署、可观测性与文档，让每个项目都能够长期运行、复现和继续扩展。</p>
+        </article>
+        <article class="card focus-card">
+          <span class="tag">Systems</span>
+          <strong>基础设施</strong>
+          <p>维护个人服务器、域名、HTTPS、反向代理与部署环境，让项目有一个稳定、可控的线上运行空间。</p>
+        </article>
+        <article class="card focus-card">
+          <span class="tag">Engineering</span>
+          <strong>工程质量</strong>
+          <p>关注结构清晰、配置可追踪、故障可定位，以及能够被自己长期维护的实现方式。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>About</h2>
+        <p>1sland 是我的个人主页与项目入口。</p>
+      </div>
+      <div class="about">
+        <div class="box">
+          <p>这里主要用于展示我实际完成和长期维护的项目、部署环境与技术实践。</p>
+          <p>GitHub：<a href="https://github.com/oweak" target="_blank" rel="noreferrer" style="color:var(--accent);">oweak (Lei Han)</a></p>
+          <p>Email：<a href="mailto:hq36202@163.com" style="color:var(--accent);">hq36202@163.com</a> · <a href="mailto:hq67134@gmail.com" style="color:var(--accent);">hq67134@gmail.com</a></p>
+          <div class="status"><span class="dot"></span> Hosted in Azure East Asia</div>
+        </div>
+        <div class="box">
+          <strong>Current stack</strong>
+          <div class="stack">
+            <span>Python</span><span>Linux</span><span>Git</span><span>Docker</span><span>Nginx</span><span>Azure</span><span>Redis</span><span>PostgreSQL</span><span>NATS</span><span>SimPy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">© <span id="year"></span> 1sland.me · Azure + Ubuntu + Nginx</div>
+</footer>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
